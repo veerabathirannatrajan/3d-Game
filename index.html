@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#101114" />
+    <meta
+      name="description"
+      content="Enter the arena. A cinematic, playable 3D duel built around the original Claris and Chase characters."
+    />
+    <title>EMBERFALL — The last light</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <main class="game-shell">
+      <div id="world" class="world" aria-label="Interactive 3D fighting game arena"></div>
+      <div class="vignette" aria-hidden="true"></div>
+      <div class="film-grain" aria-hidden="true"></div>
+
+      <header class="topbar">
+        <a class="wordmark" href="#" aria-label="Emberfall home">
+          <span class="wordmark__mark" aria-hidden="true">E</span>
+          <span class="wordmark__type">EMBERFALL<span class="wordmark__dot">.</span></span>
+        </a>
+        <div class="match-meta">
+          <span class="live-indicator"><i></i> LIVE ARENA</span>
+          <span class="meta-divider"></span>
+          <span>ANCIENT COURTYARD <span class="meta-index">/ 01</span></span>
+        </div>
+        <button id="sound-toggle" class="icon-button" aria-label="Toggle sound" title="Toggle sound">
+          <svg class="sound-on" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M11 5 6 9H3v6h3l5 4V5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+            <path d="M15.5 8.5a5 5 0 0 1 0 7m3-10a9 9 0 0 1 0 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+          </svg>
+          <svg class="sound-off" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M11 5 6 9H3v6h3l5 4V5Zm5 4 5 6m0-6-5 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+      </header>
+
+      <section class="fighters-bar" aria-label="Fighter status">
+        <article class="fighter fighter--player">
+          <div class="fighter__identity">
+            <span class="fighter__eyebrow"><span class="player-dot"></span> PLAYER ONE</span>
+            <div class="fighter__name-row">
+              <h2>CLARIS</h2>
+              <span class="fighter__level">LV. 48</span>
+            </div>
+            <span class="fighter__subtitle">THE BLADE OF DAWN</span>
+          </div>
+          <div class="bars">
+            <div class="bar-row">
+              <span class="bar-label">HP</span>
+              <div class="bar-track"><div id="player-health" class="bar-fill bar-fill--health"></div></div>
+              <span id="player-health-value" class="bar-value">1000</span>
+            </div>
+            <div class="bar-row bar-row--energy">
+              <span class="bar-label">ST</span>
+              <div class="bar-track"><div id="player-stamina" class="bar-fill bar-fill--stamina"></div></div>
+              <span id="player-stamina-value" class="bar-value">100</span>
+            </div>
+          </div>
+        </article>
+        <div class="round-info" aria-label="Round timer">
+          <span class="round-info__label">FIRST ENCOUNTER</span>
+          <span id="round-timer" class="round-info__timer">99<span>:</span>99</span>
+          <span id="round-status" class="round-info__status">READY WHEN YOU ARE</span>
+        </div>
+        <article class="fighter fighter--enemy">
+          <div class="fighter__identity">
+            <span class="fighter__eyebrow">CHALLENGER <span class="enemy-dot"></span></span>
+            <div class="fighter__name-row fighter__name-row--right">
+              <span class="fighter__level">LV. 45</span>
+              <h2>CHASE</h2>
+            </div>
+            <span class="fighter__subtitle">THE WAYFARER</span>
+          </div>
+          <div class="bars">
+            <div class="bar-row">
+              <span id="enemy-health-value" class="bar-value">1000</span>
+              <div class="bar-track"><div id="enemy-health" class="bar-fill bar-fill--enemy"></div></div>
+              <span class="bar-label">HP</span>
+            </div>
+            <div class="bar-row bar-row--energy">
+              <span id="enemy-stamina-value" class="bar-value">100</span>
+              <div class="bar-track"><div id="enemy-stamina" class="bar-fill bar-fill--enemy-energy"></div></div>
+              <span class="bar-label">ST</span>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <div class="side-label side-label--left"><span>FIGHT WITH PURPOSE</span><i></i> 01 / 01</div>
+      <div class="side-label side-label--right">古代竞技场 <i></i> FEEL THE IMPACT</div>
+
+      <section id="intro" class="intro">
+        <div class="intro__content">
+          <span class="intro__eyebrow"><span></span> A DUEL FOR THE AGES <span></span></span>
+          <h1>THE LAST<br /><span>LIGHT.</span></h1>
+          <p>Two warriors. One forgotten arena.<br />Only one leaves with the dawn.</p>
+          <button id="start-button" class="start-button">
+            <span>ENTER THE ARENA</span>
+            <span class="start-button__arrow" aria-hidden="true">↗</span>
+          </button>
+          <span class="intro__footnote">YOUR STORY STARTS HERE <span>—</span> 01:00</span>
+        </div>
+        <div class="intro__scroll"><span>SCROLL TO EXPLORE</span><i></i></div>
+      </section>
+
+      <div id="loading" class="loading">
+        <div class="loading__spinner"></div>
+        <span id="loading-label">SUMMONING THE WARRIORS</span>
+        <div class="loading__track"><div id="loading-progress"></div></div>
+      </div>
+
+      <div id="announcement" class="announcement" aria-live="polite"></div>
+      <div id="result-overlay" class="result-overlay" aria-live="assertive">
+        <span id="result-eyebrow" class="intro__eyebrow">THE DUST SETTLES</span>
+        <h2 id="result-title">VICTORY</h2>
+        <p id="result-copy">The arena remembers.</p>
+        <button id="rematch-button" class="start-button"><span>FIGHT AGAIN</span><span class="start-button__arrow" aria-hidden="true">↗</span></button>
+      </div>
+
+      <aside id="control-card" class="control-card" aria-label="Game controls">
+        <button id="control-card-toggle" class="control-card__toggle" aria-expanded="true" aria-controls="control-card__body">
+          <span><i></i> FIGHTER'S GUIDE</span>
+          <span id="control-card-icon" class="control-card__icon">−</span>
+        </button>
+        <div id="control-card__body" class="control-card__body">
+          <div class="control-card__row"><span>Move / arrows</span><span class="control-card__keys"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></span></div>
+          <div class="control-card__row"><span>Slash combo</span><span class="control-card__keys"><kbd>J</kbd></span></div>
+          <div class="control-card__row"><span>Heavy strike</span><span class="control-card__keys"><kbd>K</kbd></span></div>
+          <div class="control-card__row"><span>Special skill</span><span class="control-card__keys"><kbd>Q</kbd></span></div>
+          <div class="control-card__row"><span>Dodge / run</span><span class="control-card__keys"><kbd>⇧</kbd></span></div>
+          <div class="control-card__row"><span>Pause / resume</span><span class="control-card__keys"><kbd>Esc</kbd></span></div>
+          <div class="control-card__row"><span>Start duel</span><span class="control-card__keys"><kbd>↵</kbd></span></div>
+          <div class="control-card__row"><span>Show / hide guide</span><span class="control-card__keys"><kbd>H</kbd></span></div>
+          <p>Arrow keys also move · click attacks below · rematch after defeat</p>
+        </div>
+      </aside>
+
+      <footer class="hud-footer">
+        <div class="combat-hint">
+          <span class="combat-hint__label">YOUR MOVE</span>
+          <span id="combat-message">WASD to move <span>·</span> find your opening</span>
+        </div>
+        <div class="ability-list" aria-label="Combat controls">
+          <button class="ability" data-action="light" title="Light attack · J or click">
+            <span class="ability__key">J</span><span class="ability__name">SLASH</span>
+          </button>
+          <button class="ability" data-action="heavy" title="Heavy attack · K or click">
+            <span class="ability__key">K</span><span class="ability__name">HEAVY</span>
+          </button>
+          <button class="ability ability--skill" data-action="skill" title="Charged slash · Q or click">
+            <span class="ability__key">Q</span><span class="ability__name">SKILL</span>
+          </button>
+          <button class="ability" data-action="dodge" title="Dodge · Shift or click">
+            <span class="ability__key">⇧</span><span class="ability__name">DODGE</span>
+          </button>
+        </div>
+        <button id="pause-button" class="pause-button" aria-label="Pause game" title="Pause (Escape)">
+          <span></span><span></span>
+        </button>
+      </footer>
+      <div id="paused-overlay" class="paused-overlay">
+        <span class="intro__eyebrow">TAKE A BREATH</span>
+        <h2>PAUSED<span>.</span></h2>
+        <button id="resume-button" class="start-button"><span>BACK TO THE FIGHT</span><span class="start-button__arrow" aria-hidden="true">↗</span></button>
+      </div>
+      <div id="damage-flash" class="damage-flash" aria-hidden="true"></div>
+      <div class="mobile-controls" aria-label="Mobile game controls">
+        <div class="mobile-dpad">
+          <button data-move="forward" aria-label="Move forward">↑</button>
+          <button data-move="left" aria-label="Move left">←</button>
+          <button data-move="back" aria-label="Move back">↓</button>
+          <button data-move="right" aria-label="Move right">→</button>
+        </div>
+        <div class="mobile-attacks">
+          <button data-action="dodge" aria-label="Dodge">DODGE</button>
+          <button data-action="light" aria-label="Light attack">SLASH</button>
+          <button data-action="heavy" aria-label="Heavy attack">HEAVY</button>
+          <button data-action="skill" aria-label="Special attack">SKILL</button>
+        </div>
+      </div>
+      <div class="screen-reader-only" id="game-status" aria-live="polite">Arena is loading.</div>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
