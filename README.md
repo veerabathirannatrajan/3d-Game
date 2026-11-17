@@ -11,6 +11,12 @@ npm run dev
 
 Open the local URL printed by Vite. Run `npm run build` to create a production build in `dist/`.
 
+## Deploy to Vercel
+
+Import the repository in Vercel and deploy with the project settings in `vercel.json`.
+The production build includes the arena and both fighter models as versioned assets, so
+they load correctly from the deployed site and can be cached safely between visits.
+
 ## Controls
 
 - **W / A / S / D** or **arrow keys** — move; **Shift** — dodge (hold to sprint); **Esc** — pause.

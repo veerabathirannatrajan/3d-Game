@@ -1,5 +1,8 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import arenaAssetUrl from '../ancient_chinese_arena.glb?url';
+import playerAssetUrl from '../claris_-_epic_conquest_2.glb?url';
+import enemyAssetUrl from '../chase_-_epic_conquest_2.glb?url';
 
 const $ = (selector) => document.querySelector(selector);
 const clamp = THREE.MathUtils.clamp;
@@ -429,9 +432,9 @@ async function loadAsset(path, label, progressStart, progressEnd) {
 }
 
 async function initialize() {
-  const arenaPromise = loadAsset('/ancient_chinese_arena.glb', 'the arena', 0, 32);
-  const playerPromise = loadAsset('/claris_-_epic_conquest_2.glb', 'Claris', 32, 66);
-  const enemyPromise = loadAsset('/chase_-_epic_conquest_2.glb', 'Chase', 66, 100);
+  const arenaPromise = loadAsset(arenaAssetUrl, 'the arena', 0, 32);
+  const playerPromise = loadAsset(playerAssetUrl, 'Claris', 32, 66);
+  const enemyPromise = loadAsset(enemyAssetUrl, 'Chase', 66, 100);
   try {
     const [arenaGltf, playerGltf, enemyGltf] = await Promise.all([arenaPromise, playerPromise, enemyPromise]);
     arenaGltf.scene.traverse((object) => {
